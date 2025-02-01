@@ -2,7 +2,7 @@ Projeto
 Desenvolvimento de uma API para criar, listar, atualizar e excluir notas.
 
 1. Requisitos Funcionais (RF)
-[ ] - O usuário pode criar uma nota com título e conteúdo.
+[ ] - O usuário pode criar uma nota com id, título, status, data_criacao, e conteúdo.
 [ ] - O usuário pode listar todas as notas.
 [ ] - O usuário pode visualizar os detalhes de uma nota específica.
 [ ] - O usuário pode atualizar o título ou conteúdo de uma nota existente.
