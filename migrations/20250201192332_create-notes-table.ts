@@ -2,10 +2,10 @@ import type { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('notes', (table) => {
-    table.uuid('id').primary;
-    table.text('title').notNullable;
-    table.text('content').nullable;
-    table.dateTime('created_at').notNullable;
+    table.uuid('id').primary();
+    table.text('title').notNullable();
+    table.text('content').nullable();
+    table.dateTime('created_at').defaultTo(knex.fn.now()).notNullable();
   });
 }
 
