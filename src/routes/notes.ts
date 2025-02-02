@@ -25,4 +25,18 @@ export async function notesRoutes(app: FastifyInstance) {
 
     return reply.status(201).send();
   });
+
+  app.get('/:id', async (request: FastifyRequest) => {
+    const getNoteParamsSchema = z.object({
+      id: z.string().uuid(),
+    });
+    
+    const { id } = getNoteParamsSchema.parse(request.params);
+
+    const note = await DB('notes').where({ id }).first();
+		
+    return {
+      note,
+    }
+  });
 }
