@@ -1,6 +1,8 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { DB } from '../database';
 import { randomUUID } from 'node:crypto';
+import { z } from 'zod';
+
+import { DB } from '../database';
 
 export async function notesRoutes(app: FastifyInstance) {
   app.get('/', async () => {
@@ -12,8 +14,15 @@ export async function notesRoutes(app: FastifyInstance) {
   });
 
   app.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
-    const { title, content } = request.body;
+    const createNotesSchema = z.object({
+      title: z.string(),
+      content: z.string(),
+    });
+
+    const { title, content } = createNotesSchema.parse(request.body);
     
     await DB('notes').insert({ id: randomUUID(), title, content });
+
+    return reply.status(201).send();
   });
 }
