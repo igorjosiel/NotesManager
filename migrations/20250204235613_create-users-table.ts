@@ -7,8 +7,9 @@ export async function up(knex: Knex): Promise<void> {
     table.string('nickname', 100).nullable().unique();
     table.string('email').notNullable();
     table.boolean('is_active').defaultTo(true);
-    table.integer('age');
-    table.datetime('created_at');
+    table.integer('age').notNullable();
+    table.dateTime('date_of_birth').notNullable();
+    table.timestamps(true, true);
   });
 }
 

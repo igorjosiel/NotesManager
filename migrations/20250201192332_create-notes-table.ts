@@ -5,7 +5,8 @@ export async function up(knex: Knex): Promise<void> {
     table.uuid('id').primary();
     table.text('title').notNullable();
     table.text('content').nullable();
-    table.dateTime('created_at').defaultTo(knex.fn.now()).notNullable();
+    table.uuid('user_id').unsigned().notNullable();
+    table.timestamps(true, true);
   });
 }
 
